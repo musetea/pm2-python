@@ -35,15 +35,18 @@ class Covid19:
 
         NumTotalCase=0
         if isinstance(data[0],str):
-            NumTotalCase = int(data[0].text.strip().replace(',', ''))
+            if data[0]:
+                NumTotalCase = int(data[0].text.strip().replace(',', ''))
         
         NumDeaths = 0
         if isinstance(data[1],str):
-            NumDeaths = int(data[1].text.strip().replace(',', ''))
+            if data[1]:
+                NumDeaths = int(data[1].text.strip().replace(',', ''))
 
         NumRecovered:int=0
         if isinstance(data[2],str):
-            NumRecovered = int(data[2].text.strip().replace(',', ''))
+            if data[2]:
+                NumRecovered = int(data[2].text.strip().replace(',', ''))
             
         TimeNow = datetime.datetime.now()
 

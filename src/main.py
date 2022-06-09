@@ -3,6 +3,16 @@ from bs4 import BeautifulSoup #To install: pip3 install beautifulsoup4
 import sys
 from os import makedirs
 from os import path
+import signal
+
+
+def handler(signum, frame):
+    print(signum)
+    print(frame)
+    print("Ctrl+C 신호를 수신했습니다.")
+
+
+
 
 class Covid19:
     def __init__(self, version:str) -> None:
@@ -61,7 +71,10 @@ class Covid19:
 
 
 if __name__ == "__main__":
-
+    signal.signal(signal.SIGINT, handler)
+    signal.signal(signal.SIGTERM, handler)
+    #signal.signal(signal.SI, handler)
+    
     version:str =  sys.version.split(" ")[0].replace(".", "").strip()
     baseDir:str = f"./{version}/"
     if not path.exists(baseDir):
